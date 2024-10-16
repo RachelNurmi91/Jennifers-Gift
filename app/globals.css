@@ -25,3 +25,8 @@ body {
     text-wrap: balance;
   }
 }
+
+ul {
+  list-style: disc; /* Ensure this is not overridden */
+  padding-left: 20px; /* Ensure there's enough padding */
+}
