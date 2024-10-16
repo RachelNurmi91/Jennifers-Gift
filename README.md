@@ -4,4 +4,3 @@ serverless environment and relies on MongoDB to store data.
 ### Packges & Dependencies
 * [Next.js](https://nextjs.org/)
 * [Tailwind](https://tailwindcss.com/)
->>>>>>> d066daf163e3f2c8e643e31aa78aeb368f6d9ea4
