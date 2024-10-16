@@ -11,6 +11,6 @@ A application to host information about Jennifer's Gift. Every year the founders
 serverless environment and relies on MongoDB to store data.
 
 
-### Packges & Dependencies
+### Libraries & Packages
 * [Next.js](https://nextjs.org/)
 * [Tailwind](https://tailwindcss.com/)
