@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+=======
+# Jennifer's Gif
+A application to host information about Jennifer's Gift. Every year the founders of Jennifer's Gift host an annual golf tournament. This application was made for users to view information about the event and sign up for the golf tournaments. It uses Next.Js to act as a 
+serverless environment and relies on MongoDB to store data.
+### Packges & Dependencies
+* [Next.js](https://nextjs.org/)
+* [Tailwind](https://tailwindcss.com/)
+>>>>>>> d066daf163e3f2c8e643e31aa78aeb368f6d9ea4
