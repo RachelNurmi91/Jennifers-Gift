@@ -1,8 +1,9 @@
 import Banner from "@components/Banner";
-import { getResources } from "@data-access/getData";
 
 const Resources = async () => {
-  const resources = await getResources();
+  const res = await fetch("http://localhost:3000/api/fetch/fetchResources");
+
+  const resources = await res.json();
 
   return (
     <section className="flex-center flex-col w-full">
@@ -10,7 +11,6 @@ const Resources = async () => {
       <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
         {resources.map((resource) => (
           <div key={resource._id} className="mt-5">
-            {console.log(resource)}
             <a
               href={resource.url}
               target="_blank"

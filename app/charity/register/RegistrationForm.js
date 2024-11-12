@@ -152,7 +152,7 @@ export default function RegistrationForm() {
     };
 
     try {
-      const response = await fetch("/api/registration/newRegistration", {
+      const response = await fetch("/api/create/newRegistration", {
         method: "POST",
         body: JSON.stringify({
           fullName: submission.fullName,

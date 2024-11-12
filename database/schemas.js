@@ -1,5 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
+// REGISTRATION SCHEMA
 const registrationSchema = new Schema({
   fullName: {
     type: String,
@@ -27,7 +28,24 @@ const registrationSchema = new Schema({
   },
 });
 
+// RESOURCES SCHEMA
+const resourcesSchema = new Schema({
+  name: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
+  summary: {
+    type: String,
+  },
+});
+
+// MODELS
 const Registration =
   models.Registration || model("Registration", registrationSchema);
 
-export default Registration;
+const Resources = models.Resources || model("Resources", resourcesSchema);
+
+// EXPErTS
+export { Registration, Resources };

@@ -1,5 +1,5 @@
-import Registration from "@models/registration";
-import { connectToDatabase } from "@utils/database";
+import { connectToDatabase } from "@database";
+import { Registration } from "@database/schemas";
 
 export const POST = async (req) => {
   const { fullName, email, phone, selection, paymentType, total } =

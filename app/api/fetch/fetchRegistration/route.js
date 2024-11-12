@@ -1,5 +1,5 @@
-import Registration from "@models/registration";
-import { connectToDatabase } from "@utils/database";
+import { Registration } from "@database/schemas";
+import { connectToDatabase } from "@database";
 
 export const GET = async (req) => {
   try {
