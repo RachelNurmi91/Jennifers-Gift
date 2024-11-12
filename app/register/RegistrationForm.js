@@ -5,6 +5,7 @@ import Checkbox from "@components/Checkbox";
 import Input from "@components/Input";
 import { useRouter } from "next/navigation";
 import { createRegistration } from "@data-access";
+import Form from "next/form";
 
 const REGISTRATION_FORM = {
   firstName: "",
@@ -160,7 +161,7 @@ export default function RegistrationForm() {
   };
 
   return (
-    <form>
+    <Form onSubmit={onRegister}>
       <h2 className="text-base font-semibold leading-7 text-gray-900">
         Register for the 2025 Lyman Orchards Golf Tournament
       </h2>
@@ -301,11 +302,10 @@ export default function RegistrationForm() {
         <button
           className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded uppercase"
           type="submit"
-          onClick={onRegister}
         >
           Register
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
