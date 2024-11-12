@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import venmoCode from "@public/images/qrCode.png";
-import { useSearchParams } from "next/navigation";
-import { fetchRegistration } from "@data-access";
 
 export default function RegistrationConfirmation({
   getRegistration,
@@ -13,8 +11,8 @@ export default function RegistrationConfirmation({
   const [registrationData, setRegistrationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getRegistrationByConfirmation = async (confirmationNumber) => {
-    const registrationResponse = await getRegistrationData(confirmationNumber);
+  const getRegistrationData = async (confirmationNumber) => {
+    const registrationResponse = await getRegistration(confirmationNumber);
     if (registrationResponse) {
       setRegistrationData(registrationResponse);
       setIsLoading(false);
