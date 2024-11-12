@@ -1,14 +1,22 @@
 export const fetchResources = async () => {
-  const response = await fetch(
-    "http://localhost:3000/api/fetch/fetchResources"
-  );
-  const resourcesData = await response.json();
-
-  return resourcesData;
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/fetch/fetchResources"
+    );
+    if (response.ok) {
+      const resourcesData = await response.json();
+      return resourcesData;
+    } else {
+      console.error("Failed to fetch registration:", response.statusText);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching registration:", error);
+    return null;
+  }
 };
 
 export const createRegistration = async (submission) => {
-  console.log("Submission:", submission);
   try {
     const response = await fetch("/api/create/newRegistration", {
       method: "POST",
