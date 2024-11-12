@@ -38,9 +38,9 @@ export default function Home() {
               <Image
                 src={JenniferImage}
                 alt="Image of Jennifer O'Neill"
-                fill="fill"
-                objectFit="cover"
-                objectPosition="center"
+                fill
+                priority
+                style={{ objectPosition: "center", objectFit: "cover" }}
                 className="mx-auto"
               />
             </div>
