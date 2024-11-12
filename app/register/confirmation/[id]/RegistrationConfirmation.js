@@ -6,27 +6,26 @@ import venmoCode from "@public/images/qrCode.png";
 import { useSearchParams } from "next/navigation";
 import { fetchRegistration } from "@data-access";
 
-export default function RegistrationConfirmation() {
+export default function RegistrationConfirmation({
+  getRegistration,
+  confirmationNumber,
+}) {
   const [registrationData, setRegistrationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const queryParams = useSearchParams();
-  const confirmationNumber = queryParams.get("c");
-  const userFriendlyConfirmationNumber = confirmationNumber
-    ?.slice(-8)
-    .toUpperCase();
-
-  const getConfirmation = async (confirmationNumber) => {
-    const confirmationData = await fetchRegistration(confirmationNumber);
-    if (confirmationData) {
-      setRegistrationData(confirmationData);
+  const getRegistrationByConfirmation = async (confirmationNumber) => {
+    const registrationResponse = await getRegistrationData(confirmationNumber);
+    if (registrationResponse) {
+      setRegistrationData(registrationResponse);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
     if (confirmationNumber) {
-      getConfirmation(confirmationNumber);
+      getRegistrationData(confirmationNumber);
     }
   }, [confirmationNumber]);
 
