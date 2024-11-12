@@ -156,7 +156,7 @@ export default function RegistrationForm() {
     let confirmationNumber = await createRegistration(submission);
 
     if (confirmationNumber) {
-      router.push(`/register/confirmation?c=${confirmationNumber}`);
+      router.push(`/register/confirmation/${confirmationNumber}`);
     }
   };
 

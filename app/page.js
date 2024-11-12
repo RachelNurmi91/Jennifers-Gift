@@ -38,7 +38,7 @@ export default function Home() {
               <Image
                 src={JenniferImage}
                 alt="Image of Jennifer O'Neill"
-                layout="fill"
+                fill="fill"
                 objectFit="cover"
                 objectPosition="center"
                 className="mx-auto"

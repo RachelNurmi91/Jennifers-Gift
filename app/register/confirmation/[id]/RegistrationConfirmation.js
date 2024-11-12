@@ -1,31 +1,10 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import venmoCode from "@public/images/qrCode.png";
 
-export default function RegistrationConfirmation({
-  getRegistration,
-  confirmationNumber,
-}) {
-  const [registrationData, setRegistrationData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getRegistrationData = async (confirmationNumber) => {
-    const registrationResponse = await getRegistration(confirmationNumber);
-    if (registrationResponse) {
-      setRegistrationData(registrationResponse);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (confirmationNumber) {
-      getRegistrationData(confirmationNumber);
-    }
-  }, [confirmationNumber]);
+export default function RegistrationConfirmation({ registrationData }) {
+  const userFriendlyConfirmationNumber = registrationData?._id
+    ?.slice(-8)
+    .toUpperCase();
 
   const renderSelection = () => {
     return registrationData?.selection?.map((item, index) => {
@@ -70,9 +49,7 @@ export default function RegistrationConfirmation({
 
   return (
     <>
-      {isLoading ? (
-        <div>...Loading</div>
-      ) : registrationData?.paymentType === "credit" ? (
+      {registrationData?.paymentType === "card" ? (
         <div>
           <div className="text-center text-xs">
             <p>Please save this confirmation number for your records:</p>
