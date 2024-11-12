@@ -9,7 +9,7 @@ export default function RegistrationStatus() {
   const router = useRouter();
 
   const signUp = () => {
-    router.push("/charity/register");
+    router.push("/register");
   };
 
   return (

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Checkbox from "@components/Checkbox";
 import Input from "@components/Input";
 import { useRouter } from "next/navigation";
+import { createRegistration } from "@data-access";
 
 const REGISTRATION_FORM = {
   firstName: "",
@@ -151,27 +152,10 @@ export default function RegistrationForm() {
       total: total,
     };
 
-    try {
-      const response = await fetch("/api/create/newRegistration", {
-        method: "POST",
-        body: JSON.stringify({
-          fullName: submission.fullName,
-          email: submission.email,
-          phone: submission.phone,
-          selection: submission.selection,
-          paymentType: submission.paymentType,
-          total: submission.total,
-        }),
-      });
+    let confirmationNumber = await createRegistration(submission);
 
-      if (response.ok) {
-        const data = await response.json();
-        const confirmationNumber = data.confirmationNumber;
-        console.log(confirmationNumber);
-        router.push(`/charity/register/confirmation?c=${confirmationNumber}`);
-      }
-    } catch (error) {
-      console.error(error);
+    if (confirmationNumber) {
+      router.push(`/register/confirmation?c=${confirmationNumber}`);
     }
   };
 
