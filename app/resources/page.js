@@ -4,6 +4,8 @@ import { fetchResources } from "@data-access";
 const Resources = async () => {
   const resourcesData = await fetchResources();
 
+  console.log("resourceData: ", resourcesData);
+
   return (
     <section className="flex-center flex-col w-full">
       <Banner title="Resources" />

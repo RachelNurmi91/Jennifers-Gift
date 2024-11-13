@@ -1,10 +1,12 @@
 export const fetchResources = async () => {
   try {
+    console.log("Fetching resources...");
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/fetch/fetchResources`
     );
     if (response.ok) {
       const resourcesData = await response.json();
+      console.log("Fetched: ".resourcesData);
       return resourcesData;
     } else {
       console.error("Failed to fetch registration:", response.statusText);
