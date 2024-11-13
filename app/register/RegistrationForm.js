@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Checkbox from "@components/Checkbox";
-import Input from "@components/Input";
+import CheckboxStyle from "@components/Checkbox";
+import InputStyle from "@components/Input";
 import { useRouter } from "next/navigation";
 import { createRegistration } from "@data-access";
 import Form from "next/form";
+import ButtonStyle from "@components/Button";
+import SelectStyle from "@components/Select";
 
 const REGISTRATION_FORM = {
   firstName: "",
@@ -167,40 +169,40 @@ export default function RegistrationForm() {
       </h2>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <Input
+          <InputStyle
             label="First Name"
             id="firstName"
             placeholder="Jane"
             type="text"
-            onChange={handleInput}
+            action={handleInput}
           />
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputStyle
             label="Last Name"
             id="lastName"
             placeholder="Smith"
             type="text"
-            onChange={handleInput}
+            action={handleInput}
           />
         </div>
         <div className="sm:col-span-3">
-          <Input
+          <InputStyle
             label="Email Address"
             id="email"
             placeholder="janesmith@email.com"
             type="text"
-            onChange={handleInput}
+            action={handleInput}
           />
         </div>
         <div className="sm:col-span-3">
-          <Input
+          <InputStyle
             label="Mobile Number"
             id="phone"
             placeholder="555-555-5555"
             type="tel"
-            onChange={handleInput}
+            action={handleInput}
           />
         </div>
       </div>
@@ -213,21 +215,21 @@ export default function RegistrationForm() {
         </p>
       </div>
       <div className="ml-4 mt-4">
-        <Checkbox
+        <CheckboxStyle
           id="attendAsGolfer"
-          label="Individual Golfer"
+          text="Individual Golfer"
           desc="Golf, dinner and complimentary beverages"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="attendAsTeam"
-          label="Foursome Golf Team"
+          text="Foursome Golf Team"
           desc="You and your teammates will enjoy golf, dinner and complimentary beverages"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="attendDinner"
-          label="Dinner Guest Only"
+          text="Dinner Guest Only"
           desc="Enjoy dinner and complimentary beverages"
           onSelect={(e) => handleSelect(e)}
         />
@@ -241,33 +243,33 @@ export default function RegistrationForm() {
         </p>
       </div>
       <div className="ml-4 mt-4">
-        <Checkbox
+        <CheckboxStyle
           id="sponsorHole"
-          label="Single Hole Sponsor"
+          text="Single Hole Sponsor"
           desc="18 x 24 sign at a single hole"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="sponsorDoubleHole"
-          label="Double Hole Sponsor"
+          text="Double Hole Sponsor"
           desc="18 x 24 sign at two of the golf holes"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="sponsorBeverage"
-          label="Beverage Cart Sponsor"
+          text="Beverage Cart Sponsor"
           desc="On-cart advertising and flyer recognition"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="sponsorLunch"
-          label="Lunch Sponsor"
+          text="Lunch Sponsor"
           desc="Signage at lunch and flyer recognition"
           onSelect={(e) => handleSelect(e)}
         />
-        <Checkbox
+        <CheckboxStyle
           id="sponsorDinner"
-          label="Dinner Sponsor"
+          text="Dinner Sponsor"
           desc="Signage at dinner and flyer recognition"
           onSelect={(e) => handleSelect(e)}
         />
@@ -275,23 +277,30 @@ export default function RegistrationForm() {
       <div className="mt-10">
         <span className="font-bold">Preferred Method of Payment</span>
         <div className="sm:col-span-3">
-          <div className="mt-2">
-            <select
+          <div className="mt-5">
+            <SelectStyle
               id="paymentType"
-              name="paymentType"
-              onClick={(e) => handlePaymentType(e)}
-              className="block pl-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-            >
-              <option value="venmo">Venmo</option>
-              <option value="card">Debit/Credit Card</option>
-            </select>
-            <p className="block text-xs ml-1 mt-1 font-medium leading-6 text-gray-900">
-              {regForm.paymentType
-                ? regForm.paymentType === "card"
-                  ? "A 3% processing fee will be added for credit card payments."
-                  : "Further Venmo instructions will be provided after registration."
-                : null}
-            </p>
+              label="Payment Type"
+              action={(e) => handlePaymentType(e)}
+              options={[
+                {
+                  value: "venmo",
+                  label: "Venmo",
+                },
+                {
+                  value: "card",
+                  label: "Debit/Credit Card",
+                },
+              ]}
+              value={regForm.paymentType}
+              desc={
+                regForm.paymentType
+                  ? regForm.paymentType === "card"
+                    ? "A 3% processing fee will be added for credit card payments."
+                    : "Further Venmo instructions will be provided after registration."
+                  : null
+              }
+            />
           </div>
         </div>
       </div>
@@ -299,12 +308,7 @@ export default function RegistrationForm() {
         <span className="font-bold">Your Total Cost:</span> ${total.toFixed(2)}
       </div>
       <div className="text-center">
-        <button
-          className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded uppercase"
-          type="submit"
-        >
-          Register
-        </button>
+        <ButtonStyle text="Register" />
       </div>
     </Form>
   );

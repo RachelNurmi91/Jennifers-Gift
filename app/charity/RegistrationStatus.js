@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ButtonStyle from "@components/Button";
 
 export default function RegistrationStatus() {
   const [isRegistrationOpen] = useState(true);
@@ -10,18 +11,13 @@ export default function RegistrationStatus() {
 
   const signUp = () => {
     router.push("/register");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div className="text-center">
       {isRegistrationOpen ? (
-        <button
-          className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-10 rounded uppercase"
-          type="submit"
-          onClick={signUp}
-        >
-          Sign Up Now
-        </button>
+        <ButtonStyle text="Sign Up Now" action={signUp} />
       ) : (
         <p>
           Thank you for joining us this year! <br />
