@@ -1,5 +1,6 @@
 import Image from "next/image";
 import venmoCode from "@public/images/qrCode.png";
+import { Alert } from "@mui/material";
 
 export default function RegistrationConfirmation({ registrationData }) {
   const userFriendlyConfirmationNumber = registrationData?._id
@@ -51,6 +52,9 @@ export default function RegistrationConfirmation({ registrationData }) {
     <>
       {registrationData?.paymentType === "card" ? (
         <div>
+          <Alert severity="success">
+            Your registration has been successful!
+          </Alert>
           <div className="text-center text-xs">
             <p>Please save this confirmation number for your records:</p>
             <p className="mt-2 p-5 bg-gray-50">
@@ -79,24 +83,25 @@ export default function RegistrationConfirmation({ registrationData }) {
               <span className="font-bold">{registrationData?.fullName}</span>!
             </p>
             <div className="mt-5">
-              You registered for the following:
+              You signed up for the following:
               <br />
               <ul className="mt-2 text-sm">{renderSelection()}</ul>
             </div>
+            <div className="mt-10 mb-5">
+              <Alert severity="error">Your registration is incomplete!</Alert>
+            </div>
+
             <div className="p-6 bg-gray-50 mt-5">
-              <p className="text-center mb-3 font-bold uppercase text-red-600">
-                Important Notice!
-              </p>
               <p>
-                <span className="font-bold">
-                  Your registration is not complete
-                </span>{" "}
-                until you receive a confirmation e-mail.
+                Since you chose to pay by Venmo, your registration is not
+                complete until you receive a confirmation e-mail.
               </p>
               <p className="mt-5">
-                To complete your registration, please Venmo your total amount
-                due with the name on your registration. We will send a
-                confirmation to{" "}
+                To complete your registration, please utilize the info below to
+                Venmo your amount due with the name on your registration.
+              </p>
+              <p className="mt-5">
+                We will send a confirmation to{" "}
                 <span className="font-bold">{registrationData?.email}</span>{" "}
                 within 72 hours after payment is received.
               </p>
