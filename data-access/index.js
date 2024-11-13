@@ -1,7 +1,7 @@
 export const fetchResources = async () => {
   try {
     const response = await fetch(
-      "http://localhost:3000/api/fetch/fetchResources"
+      `${process.env.NEXT_PUBLIC_URL}/api/fetch/fetchResources`
     );
     if (response.ok) {
       const resourcesData = await response.json();
@@ -18,17 +18,20 @@ export const fetchResources = async () => {
 
 export const createRegistration = async (submission) => {
   try {
-    const response = await fetch("/api/create/newRegistration", {
-      method: "POST",
-      body: JSON.stringify({
-        fullName: submission.fullName,
-        email: submission.email,
-        phone: submission.phone,
-        selection: submission.selection,
-        paymentType: submission.paymentType,
-        total: submission.total,
-      }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/create/newRegistration`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          fullName: submission.fullName,
+          email: submission.email,
+          phone: submission.phone,
+          selection: submission.selection,
+          paymentType: submission.paymentType,
+          total: submission.total,
+        }),
+      }
+    );
 
     if (response.ok) {
       const data = await response.json();
@@ -44,7 +47,7 @@ export const createRegistration = async (submission) => {
 export const fetchRegistration = async (confirmationNumber) => {
   try {
     const registrationRes = await fetch(
-      `http://localhost:3000/api/fetch/fetchRegistration?id=${confirmationNumber}`
+      `${process.env.NEXT_PUBLIC_URL}/api/fetch/fetchRegistration?id=${confirmationNumber}`
     );
 
     if (registrationRes.ok) {
