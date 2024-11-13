@@ -16,7 +16,7 @@ const SelectStyle = ({ label, id, action, options, value, desc }) => {
         label={label}
         onChange={action}
       >
-        {options.map((option, i) => (
+        {options?.map((option, i) => (
               <MenuItem 
                 key={i}
                 value={option.value}

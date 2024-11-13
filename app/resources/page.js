@@ -8,7 +8,7 @@ const Resources = async () => {
     <section className="flex-center flex-col w-full">
       <Banner title="Resources" />
       <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
-        {resourcesData.map((resource) => (
+        {resourcesData?.map((resource) => (
           <div key={resource._id} className="mt-5">
             <a
               href={resource.url}
