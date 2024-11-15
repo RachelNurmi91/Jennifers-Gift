@@ -1,21 +1,10 @@
+import { connectToDatabase } from "@database";
+import { Resources, Registration } from "@database/schemas";
+
 export const fetchResources = async () => {
-  try {
-    console.log("Fetching resources...");
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/fetch/fetchResources`
-    );
-    if (response.ok) {
-      const resourcesData = await response.json();
-      console.log("Fetched: ".resourcesData);
-      return resourcesData;
-    } else {
-      console.error("Failed to fetch registration:", response.statusText);
-      return null;
-    }
-  } catch (error) {
-    console.error("Error fetching registration:", error);
-    return null;
-  }
+  await connectToDatabase();
+  const response = await Resources.find({});
+  return response;
 };
 
 export const createRegistration = async (submission) => {
@@ -47,23 +36,7 @@ export const createRegistration = async (submission) => {
 };
 
 export const fetchRegistration = async (confirmationNumber) => {
-  try {
-    const registrationRes = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/fetch/fetchRegistration?id=${confirmationNumber}`
-    );
-
-    if (registrationRes.ok) {
-      const registrationData = await registrationRes.json();
-      return registrationData;
-    } else {
-      console.error(
-        "Failed to fetch registration:",
-        registrationRes.statusText
-      );
-      return null;
-    }
-  } catch (error) {
-    console.error("Error fetching registration:", error);
-    return null;
-  }
+  await connectToDatabase();
+  const response = await Registration.findById(confirmationNumber);
+  return response;
 };

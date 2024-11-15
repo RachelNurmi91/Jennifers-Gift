@@ -12,7 +12,7 @@ export const connectToDatabase = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {
       dbName: "jennifersGift",
       useNewUrlParser: true,
       useUnifiedTopology: true,

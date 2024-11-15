@@ -3,7 +3,8 @@ import venmoCode from "@public/images/qrCode.png";
 import { Alert } from "@mui/material";
 
 export default function RegistrationConfirmation({ registrationData }) {
-  const userFriendlyConfirmationNumber = registrationData?._id
+  const confirmationNumber = registrationData?._id.toString();
+  const userFriendlyConfirmationNumber = confirmationNumber
     ?.slice(-8)
     .toUpperCase();
 

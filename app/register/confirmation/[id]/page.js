@@ -11,10 +11,7 @@ const Confirmation = async ({ params }) => {
     <section className="flex-center flex-col w-full">
       <Banner title="Annual Charity Golf Tournament" />
       <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
-        <RegistrationConfirmation
-          registrationData={registrationData}
-          confirmationNumber={confirmationNumber}
-        />
+        <RegistrationConfirmation registrationData={registrationData} />
       </div>
     </section>
   );
