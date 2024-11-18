@@ -2,15 +2,27 @@ import Image from "next/image";
 import venmoCode from "@public/images/qrCode.png";
 import { Alert } from "@mui/material";
 
-export default function RegistrationConfirmation({ registrationData }) {
+interface RegistrationData {
+  registrationData: {
+    fullName: string,
+    email: string,
+    selection: string[],
+    paymentType: string, 
+    total: number,
+    _id: string,
+  }
+}
+
+function RegistrationConfirmation({ registrationData } : RegistrationData) {
+
   const confirmationNumber = registrationData?._id.toString();
   const userFriendlyConfirmationNumber = confirmationNumber
     ?.slice(-8)
     .toUpperCase();
 
   const renderSelection = () => {
-    return registrationData?.selection?.map((item, index) => {
-      let customerFriendlyName;
+    return registrationData?.selection?.map((item, index: number) => {
+      let customerFriendlyName: string;
 
       switch (item) {
         case "attendAsGolfer":
@@ -128,3 +140,5 @@ export default function RegistrationConfirmation({ registrationData }) {
     </>
   );
 }
+
+export default RegistrationConfirmation

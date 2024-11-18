@@ -24,7 +24,6 @@ export default function Charity() {
           <CardStyle
             image={placeholderImg}
             title="Play in the tournament"
-            subtitle="Play golf and enjoy dinner & beverages"
             desc={
               <>
                 <span>
@@ -55,7 +54,6 @@ export default function Charity() {
           <CardStyle
             image={placeholderImg}
             title="Join us for dinner"
-            subtitle="Skip golf and join us for dinner & beverages"
             desc={
               <>
                 <span>
