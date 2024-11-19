@@ -22,7 +22,7 @@ interface SubmissionTypes {
 export const createRegistration = async (submission: SubmissionTypes) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/create/newRegistration`,
+      `/api/create/newRegistration`,
       {
         method: "POST",
         headers: {
