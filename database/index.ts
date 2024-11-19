@@ -11,7 +11,7 @@ export const connectToDatabase = async () => {
     return;
   }
 
-  const secretDatabaseKey = process.env.NEXT_PUBLIC_MONGODB_URI;
+  const secretDatabaseKey = process.env.MONGODB_URI;
 
   if (!secretDatabaseKey) {
     throw new Error("MongoDB URI is not defined in ENV.")
