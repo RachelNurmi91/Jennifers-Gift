@@ -1,15 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import CheckboxStyle from "@components/Checkbox";
 import InputStyle from "@components/Input";
 import { useRouter } from "next/navigation";
 import { createRegistration } from "@data-access";
 import Form from "next/form";
 import ButtonStyle from "@components/Button";
+import { SelectChangeEvent } from "@mui/material";
 import SelectStyle from "@components/Select";
 
-const REGISTRATION_FORM = {
+interface SelectionTypes {
+  attendAsGolfer: boolean;
+  attendAsTeam: boolean;
+  attendDinner: boolean;
+  sponsorHole: boolean;
+  sponsorDoubleHole: boolean;
+  sponsorBeverage: boolean;
+  sponsorLunch: boolean;
+  sponsorDinner: boolean;
+}
+
+interface FormTypes {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  selection: SelectionTypes;
+  paymentType: string;
+}
+
+
+const REGISTRATION_FORM: FormTypes = {
   firstName: "",
   lastName: "",
   email: "",
@@ -28,32 +50,32 @@ const REGISTRATION_FORM = {
 };
 
 export default function RegistrationForm() {
-  const [regForm, setRegForm] = useState(REGISTRATION_FORM);
+  const [regForm, setRegForm] = useState<FormTypes>(REGISTRATION_FORM);
   const [total, setTotal] = useState(0);
 
   const router = useRouter();
 
-  const handleInput = async (e) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setRegForm((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
   };
-  const handleSelect = async (e) => {
+  const handleSelect = (e: ChangeEvent<HTMLInputElement>) => {
+    const { id } = e.target;
     setRegForm((prevState) => ({
       ...prevState,
       selection: {
         ...prevState.selection,
-        [e.target.id]: !prevState.selection[e.target.id], // Toggling value
+        [id as keyof Selection]: !prevState.selection[id as keyof SelectionTypes],
       },
     }));
   };
 
-  const handlePaymentType = async (e) => {
-    console.log(e.target.value);
+  const handlePaymentType = (e: SelectChangeEvent<string>) => {
     setRegForm((prevState) => ({
       ...prevState,
-      paymentType: e.target.value,
+      paymentType: e.target.value,  // e.target.value gives the selected option's value
     }));
   };
 
@@ -62,7 +84,7 @@ export default function RegistrationForm() {
 
     // Calculate total based on selections
     Object.keys(regForm.selection).forEach((selection) => {
-      if (regForm.selection[selection]) {
+      if (regForm.selection[selection as keyof SelectionTypes]) {
         switch (selection) {
           case "attendAsGolfer":
             total += 150;
@@ -129,7 +151,7 @@ export default function RegistrationForm() {
     }
   };
 
-  const onRegister = async (e) => {
+  const onRegister = async (e: FormEvent) => {
     e.preventDefault();
 
     let errors = errorCheck();
@@ -140,11 +162,7 @@ export default function RegistrationForm() {
     }
 
     // Use reduce to filter out non-true values
-    const filteredSelections = Object.keys(regForm.selection).filter(function (
-      x
-    ) {
-      return regForm.selection[x] !== false;
-    });
+    const filteredSelections = Object.keys(regForm.selection).filter((x) => regForm.selection[x as keyof SelectionTypes]);
 
     const submission = {
       fullName: `${regForm.firstName} ${regForm.lastName}`,
@@ -158,12 +176,12 @@ export default function RegistrationForm() {
     let confirmationNumber = await createRegistration(submission);
 
     if (confirmationNumber) {
-      router.push(`/register/confirmation/${confirmationNumber}`);
+      router.push(`/register/confirmation?id=${confirmationNumber}`);
     }
   };
 
   return (
-    <Form onSubmit={onRegister}>
+    <Form onSubmit={onRegister} action="#">
       <h2 className="text-base font-semibold leading-7 text-gray-900">
         Register for the 2025 Lyman Orchards Golf Tournament
       </h2>
@@ -173,7 +191,6 @@ export default function RegistrationForm() {
             label="First Name"
             id="firstName"
             placeholder="Jane"
-            type="text"
             action={handleInput}
           />
         </div>
@@ -183,7 +200,6 @@ export default function RegistrationForm() {
             label="Last Name"
             id="lastName"
             placeholder="Smith"
-            type="text"
             action={handleInput}
           />
         </div>
@@ -192,7 +208,6 @@ export default function RegistrationForm() {
             label="Email Address"
             id="email"
             placeholder="janesmith@email.com"
-            type="text"
             action={handleInput}
           />
         </div>
@@ -201,7 +216,6 @@ export default function RegistrationForm() {
             label="Mobile Number"
             id="phone"
             placeholder="555-555-5555"
-            type="tel"
             action={handleInput}
           />
         </div>
@@ -219,19 +233,19 @@ export default function RegistrationForm() {
           id="attendAsGolfer"
           text="Individual Golfer"
           desc="Golf, dinner and complimentary beverages"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="attendAsTeam"
           text="Foursome Golf Team"
           desc="You and your teammates will enjoy golf, dinner and complimentary beverages"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="attendDinner"
           text="Dinner Guest Only"
           desc="Enjoy dinner and complimentary beverages"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
       </div>
 
@@ -247,60 +261,54 @@ export default function RegistrationForm() {
           id="sponsorHole"
           text="Single Hole Sponsor"
           desc="18 x 24 sign at a single hole"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="sponsorDoubleHole"
           text="Double Hole Sponsor"
           desc="18 x 24 sign at two of the golf holes"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="sponsorBeverage"
           text="Beverage Cart Sponsor"
           desc="On-cart advertising and flyer recognition"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="sponsorLunch"
           text="Lunch Sponsor"
           desc="Signage at lunch and flyer recognition"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
         <CheckboxStyle
           id="sponsorDinner"
           text="Dinner Sponsor"
           desc="Signage at dinner and flyer recognition"
-          onSelect={(e) => handleSelect(e)}
+          onSelect={handleSelect}
         />
       </div>
       <div className="mt-10">
         <span className="font-bold">Preferred Method of Payment</span>
         <div className="sm:col-span-3">
           <div className="mt-5">
-            <SelectStyle
-              id="paymentType"
-              label="Payment Type"
-              action={(e) => handlePaymentType(e)}
-              options={[
-                {
-                  value: "venmo",
-                  label: "Venmo",
-                },
-                {
-                  value: "card",
-                  label: "Debit/Credit Card",
-                },
-              ]}
-              value={regForm.paymentType}
-              desc={
-                regForm.paymentType
-                  ? regForm.paymentType === "card"
-                    ? "A 3% processing fee will be added for credit card payments."
-                    : "Further Venmo instructions will be provided after registration."
-                  : null
-              }
-            />
+          <SelectStyle
+            id="paymentType"
+            label="Payment Type"
+            action={handlePaymentType}  // Use the updated handlePaymentType handler
+            options={[
+              { value: "venmo", label: "Venmo" },
+              { value: "card", label: "Debit/Credit Card" },
+            ]}
+            value={regForm.paymentType}
+            desc={
+              regForm.paymentType
+                ? regForm.paymentType === "card"
+                  ? "A 3% processing fee will be added for credit card payments."
+                  : "Further Venmo instructions will be provided after registration."
+                : undefined
+            }
+          />
           </div>
         </div>
       </div>

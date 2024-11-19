@@ -1,4 +1,3 @@
-import { connectToDatabase } from "@database";
 import { getRegistrationModel, getResourcesModel } from "@database/schemas";
 
 export const fetchRegistration = async (confirmationNumber: string) => {
@@ -11,7 +10,16 @@ export const fetchResources = async () => {
   return Resources.find({});
 };
 
-export const createRegistration = async (submission) => {
+
+interface SubmissionTypes {
+  fullName: string;
+  email: string;
+  phone: string;
+  selection: string[], // Use the filtered object
+  paymentType: string;
+  total: number;
+}
+export const createRegistration = async (submission: SubmissionTypes) => {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/create/newRegistration`,

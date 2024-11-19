@@ -1,6 +1,8 @@
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import { Roboto } from "next/font/google";
+// Import ReactNode for type definition
+import { ReactNode } from "react";
 
 const roboto = Roboto({
   weight: "400",
@@ -12,7 +14,12 @@ export const metadata = {
   description: "Raising awareness for metastatic breast cancer.",
 };
 
-export default function RootLayout({ children }) {
+interface ChildrenTypes {
+  children: ReactNode; // Define the type of children
+}
+
+
+export default function RootLayout({ children }: ChildrenTypes) {
   return (
     <html lang="en">
       <body>

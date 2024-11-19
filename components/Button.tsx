@@ -12,7 +12,7 @@ const theme = createTheme({
 
 interface ButtonProps {
   text: string;
-  action: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  action?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const ButtonStyle: React.FC<ButtonProps> = ({ text, action }) => {

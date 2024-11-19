@@ -1,9 +1,19 @@
 import { connectToDatabase } from "@database";
 import { getRegistrationModel } from "@database/schemas";
+import { NextApiRequest } from "next";
 
-// Server-side API handler to process the registration
-export const POST = async (req) => {
-  const { fullName, email, phone, selection, paymentType, total } = await req.json();
+interface RequestTypes {
+  fullName: string;
+  email: string;
+  phone: string;
+  selection: string;
+  paymentType: string;
+  total: number;
+  json: any;
+}
+
+export const POST = async (req: NextApiRequest) => {
+  const { fullName, email, phone, selection, paymentType, total }: RequestTypes = await req.body;
 
   try {
     await connectToDatabase(); // Connect to the database
@@ -29,7 +39,7 @@ export const POST = async (req) => {
       JSON.stringify({ confirmationNumber: savedRegistration._id }),
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error saving registration:", error);
     return new Response("Registration failed: " + error.message, {
       status: 500,

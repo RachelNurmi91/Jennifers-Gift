@@ -11,8 +11,14 @@ export const connectToDatabase = async () => {
     return;
   }
 
+  const secretDatabaseKey = process.env.NEXT_PUBLIC_MONGODB_URI;
+
+  if (!secretDatabaseKey) {
+    throw new Error("MongoDB URI is not defined in ENV.")
+  }
+
   try {
-    await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {
+    await mongoose.connect(secretDatabaseKey, {
       dbName: "jennifersGift",
     });
 
