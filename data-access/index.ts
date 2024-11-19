@@ -43,6 +43,9 @@ export const createRegistration = async (submission: SubmissionTypes) => {
       const data = await response.json();
       const confirmationNumber = data.confirmationNumber;
       return confirmationNumber;
+    } else {
+      const errorData = await response.text(); // Log error details
+      console.error('Error:', errorData); // Logs the response body to help diagnose
     }
   } catch (error) {
     console.error(error);
