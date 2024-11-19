@@ -152,6 +152,7 @@ export default function RegistrationForm() {
   };
 
   const onRegister = async (e: FormEvent) => {
+
     e.preventDefault();
 
     let errors = errorCheck();

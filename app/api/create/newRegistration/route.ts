@@ -1,27 +1,19 @@
-import { connectToDatabase } from "@database";
 import { getRegistrationModel } from "@database/schemas";
-import { NextApiRequest } from "next";
+import { NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-interface RequestTypes {
-  fullName: string;
-  email: string;
-  phone: string;
-  selection: string;
-  paymentType: string;
-  total: number;
-  json: any;
-}
 
-export const POST = async (req: NextApiRequest) => {
-  const { fullName, email, phone, selection, paymentType, total }: RequestTypes = await req.body;
-
+export async function POST(req: Request, res: NextApiResponse) {
   try {
-    await connectToDatabase(); // Connect to the database
+    const { fullName, email, phone, selection, paymentType, total } = await req.json();
+    
 
-    // Get the Registration model
+    if (!fullName || !email || !phone || !selection || !paymentType || !total) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
     const Registration = await getRegistrationModel();
 
-    // Create a new registration document using the model
     const newRegistration = new Registration({
       fullName,
       email,
@@ -31,18 +23,18 @@ export const POST = async (req: NextApiRequest) => {
       total,
     });
 
-    // Save the registration document to the database
     const savedRegistration = await newRegistration.save();
 
-    // Return the confirmation number as a response
-    return new Response(
-      JSON.stringify({ confirmationNumber: savedRegistration._id }),
+
+    return NextResponse.json(
+      {
+        confirmationNumber: savedRegistration._id.toString(),
+      },
       { status: 201 }
-    );
+    )
+
   } catch (error: any) {
     console.error("Error saving registration:", error);
-    return new Response("Registration failed: " + error.message, {
-      status: 500,
-    });
+    return res.status(500).json({ message: "Registration failed", error: error.message });
   }
-};
+}

@@ -25,6 +25,9 @@ export const createRegistration = async (submission: SubmissionTypes) => {
       `${process.env.NEXT_PUBLIC_URL}/api/create/newRegistration`,
       {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           fullName: submission.fullName,
           email: submission.email,
