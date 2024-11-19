@@ -1,7 +1,20 @@
 import React from 'react'
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material'
 
-const SelectStyle = ({ label, id, action, options, value, desc }) => {
+interface Options {
+  value: string;
+  label: string;
+}
+interface SelectProps {
+  label: string;
+  id: string;
+  action:  (e: React.ChangeEvent<HTMLInputElement>) => void;
+  options: Options[];
+  value: string;
+  desc?: string;
+}
+
+const SelectStyle: React.FC<SelectProps> = ({ label, id, action, options, value, desc }) => {
   return (
     <FormControl fullWidth>
       <InputLabel 

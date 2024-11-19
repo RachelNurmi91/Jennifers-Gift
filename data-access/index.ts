@@ -1,10 +1,14 @@
 import { connectToDatabase } from "@database";
-import { Resources, Registration } from "@database/schemas";
+import { getRegistrationModel, getResourcesModel } from "@database/schemas";
+
+export const fetchRegistration = async (confirmationNumber: string) => {
+  const Registration = await getRegistrationModel(); // Ensure the model is initialized
+  return Registration.findById(confirmationNumber);
+};
 
 export const fetchResources = async () => {
-  await connectToDatabase();
-  const response = await Resources.find({});
-  return response;
+  const Resources = await getResourcesModel(); // Ensure the model is initialized
+  return Resources.find({});
 };
 
 export const createRegistration = async (submission) => {
@@ -33,10 +37,4 @@ export const createRegistration = async (submission) => {
     console.error(error);
     return null;
   }
-};
-
-export const fetchRegistration = async (confirmationNumber) => {
-  await connectToDatabase();
-  const response = await Registration.findById(confirmationNumber);
-  return response;
 };

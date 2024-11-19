@@ -10,7 +10,12 @@ const theme = createTheme({
   },
 });
 
-const ButtonStyle = ({ text, action }) => {
+interface ButtonProps {
+  text: string;
+  action: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+const ButtonStyle: React.FC<ButtonProps> = ({ text, action }) => {
   return (
     <ThemeProvider theme={theme}>
       <Button variant="contained" color="primary" size="large" type="submit" onClick={action}>

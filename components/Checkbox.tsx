@@ -1,7 +1,14 @@
 import React from 'react'
 import { Checkbox, FormControlLabel, FormHelperText, FormGroup } from '@mui/material'
 
-const CheckboxStyle = ({ text, id, desc, onSelect }) => {
+interface CheckboxProps {
+  text: string;
+  id: string;
+  desc?: string;
+  onSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const CheckboxStyle: React.FC<CheckboxProps> = ({ text, id, desc, onSelect }) => {
   return (
     <FormGroup>
     <FormControlLabel 
@@ -9,8 +16,7 @@ const CheckboxStyle = ({ text, id, desc, onSelect }) => {
         <Checkbox           
           id={id} 
           name={id}
-          type="checkbox"
-          onClick={onSelect}
+          onChange={onSelect}
         />
       } 
       label={text} 
