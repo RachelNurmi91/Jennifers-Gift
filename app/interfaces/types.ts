@@ -33,6 +33,10 @@ export interface ResourceTypes {
   summary: string;
 }
 
+export interface ResourceDataTypes {
+  resourceData: ResourceTypes[];
+}
+
 export interface RegistrationFormTypes {
   onRegister: (e: FormEvent) => void;
   handlePaymentType: (e: SelectChangeEvent<string>) => void;
