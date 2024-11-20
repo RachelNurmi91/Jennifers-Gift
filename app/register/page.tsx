@@ -1,13 +1,11 @@
-import Banner from "@components/Banner";
-import RegistrationForm from "./RegistrationForm";
+import Container from "@components/Container";
+import Registration from "./Registration";
 
-export default function Register() {
+export default function RegistrationPage() {
   return (
-    <section className="flex-center flex-col w-full">
-      <Banner title="Register" />
-      <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
-        <RegistrationForm />
-      </div>
-    </section>
+    <Container
+      title="Register"
+      component={<Registration />}
+    />
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ButtonStyle from "@components/Button";
 
-export default function RegistrationStatus() {
+export default function RegisterButton() {
   const [isRegistrationOpen] = useState(true);
 
   const router = useRouter();

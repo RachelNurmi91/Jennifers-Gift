@@ -1,14 +1,13 @@
-import Banner from "@components/Banner";
+import Container from "@components/Container";
+import Contact from "./Contact";
 
-const Contact = () => {
+const ContactPage = () => {
   return (
-    <section className="flex-center flex-col w-full">
-      <Banner title="Contact" />
-      <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
-        Contact
-      </div>
-    </section>
+    <Container
+      title="Contact"
+      component={<Contact />}
+    />
   );
 };
 
-export default Contact;
+export default ContactPage;

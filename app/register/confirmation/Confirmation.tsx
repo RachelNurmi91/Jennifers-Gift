@@ -13,7 +13,7 @@ interface RegistrationData {
   }
 }
 
-function RegistrationConfirmation({ registrationData } : RegistrationData) {
+function Confirmation({ registrationData } : RegistrationData) {
 
   const confirmationNumber = registrationData?._id.toString();
   const userFriendlyConfirmationNumber = confirmationNumber
@@ -141,4 +141,4 @@ function RegistrationConfirmation({ registrationData } : RegistrationData) {
   );
 }
 
-export default RegistrationConfirmation
+export default Confirmation

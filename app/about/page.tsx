@@ -1,14 +1,11 @@
-import Banner from "@components/Banner";
+import Container from "@components/Container";
+import About from "./About";
 
-const About = () => {
+export default function AboutPage() {
   return (
-    <section className="flex-center flex-col w-full">
-      <Banner title="About Us" />
-      <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
-        About Us
-      </div>
-    </section>
+    <Container
+      title="About Us"
+      component={<About />}
+    />
   );
 };
-
-export default About;
