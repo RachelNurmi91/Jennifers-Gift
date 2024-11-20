@@ -11,7 +11,6 @@ export default function RegisterButton() {
 
   const signUp = () => {
     router.push("/register");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

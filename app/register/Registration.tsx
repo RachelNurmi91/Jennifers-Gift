@@ -34,6 +34,10 @@ export default function Registration() {
 
   const router = useRouter();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [])
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -64,8 +68,6 @@ export default function Registration() {
     const total: number = calculateTotal(formData.selection, formData.paymentType)
     setTotal(total);
   }, [formData.selection, formData.paymentType]);
-
-  
 
   const onRegister = async (e: FormEvent) => {
     e.preventDefault();
