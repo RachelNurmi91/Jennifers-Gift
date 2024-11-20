@@ -5,20 +5,9 @@ import InputStyle from "@components/Input";
 import Form from "next/form";
 import ButtonStyle from "@components/Button";
 import SelectStyle from "@components/Select";
-import { FormEvent, ChangeEvent } from 'react';
-import { SelectChangeEvent } from "@mui/material";
-import { FormTypes } from "@interfaces/types";
+import { RegistrationFormTypes } from "@app/interfaces/types";
 
-interface RegistrationFormProps {
-  onRegister: (e: FormEvent) => void;
-  handlePaymentType: (e: SelectChangeEvent<string>) => void;
-  handleSelect: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleInput: (e: ChangeEvent<HTMLInputElement>) => void;
-  formData: FormTypes;
-  total: number;
-}
-
-const RegistrationForm: React.FC<RegistrationFormProps> = ({
+const RegistrationForm: React.FC<RegistrationFormTypes> = ({
   onRegister,
   handlePaymentType,
   handleSelect,

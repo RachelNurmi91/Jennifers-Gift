@@ -1,14 +1,8 @@
 import React from 'react'
 import { TextField, FormControl } from '@mui/material'
+import { InputTypes } from './interfaces/types'
 
-interface InputProps {
-  label: string;
-  id: string;
-  placeholder: string;
-  action: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const InputStyle: React.FC<InputProps> = ({ label, id, placeholder, action }) => {
+const InputStyle: React.FC<InputTypes> = ({ label, id, placeholder, action }) => {
   return (
     <FormControl fullWidth>
       <TextField

@@ -1,4 +1,4 @@
-import { FormTypes } from "@interfaces/types";
+import { FormTypes } from "@app/interfaces/types";
 
 export function validateForm(formData: FormTypes) {
 

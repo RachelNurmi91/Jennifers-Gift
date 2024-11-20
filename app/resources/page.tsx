@@ -1,15 +1,9 @@
 import Banner from "@components/Banner";
 import { fetchResources } from "@data-access";
-
-interface Resource {
-  _id: string;
-  name: string;
-  url: string;
-  summary: string;
-}
+import { ResourceTypes } from "@app/interfaces/types";
 
 const Resources = async () => {
-  const resourcesData: Resource[] = await fetchResources();
+  const resourcesData: ResourceTypes[] = await fetchResources();
 
   return (
     <section className="flex-center flex-col w-full">

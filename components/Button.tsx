@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Button from "@mui/material/Button";
+import { ButtonTypes } from './interfaces/types';
 
 const theme = createTheme({
   palette: {
@@ -10,12 +11,8 @@ const theme = createTheme({
   },
 });
 
-interface ButtonProps {
-  text: string;
-  action?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}
 
-const ButtonStyle: React.FC<ButtonProps> = ({ text, action }) => {
+const ButtonStyle: React.FC<ButtonTypes> = ({ text, action }) => {
   return (
     <ThemeProvider theme={theme}>
       <Button variant="contained" color="primary" size="large" type="submit" onClick={action}>

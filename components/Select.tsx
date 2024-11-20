@@ -1,21 +1,9 @@
 import React from 'react'
-import { FormControl, InputLabel, Select, MenuItem, FormHelperText, SelectChangeEvent } from '@mui/material'
+import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material'
+import { SelectTypes } from './interfaces/types';
 
-interface Options {
-  value: string;
-  label: string;
-}
 
-interface SelectProps {
-  label: string;
-  id: string;
-  action: (e: SelectChangeEvent<string>) => void; // Use SelectChangeEvent for the action type
-  options: Options[];
-  value: string;
-  desc?: string;
-}
-
-const SelectStyle: React.FC<SelectProps> = ({ label, id, action, options, value, desc }) => {
+const SelectStyle: React.FC<SelectTypes> = ({ label, id, action, options, value, desc }) => {
   return (
     <FormControl fullWidth>
       <InputLabel id="demo-simple-select-label">{label}</InputLabel>

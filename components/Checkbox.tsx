@@ -1,14 +1,9 @@
 import React from 'react'
 import { Checkbox, FormControlLabel, FormHelperText, FormGroup } from '@mui/material'
+import { CheckboxTypes } from './interfaces/types'
 
-interface CheckboxProps {
-  text: string;
-  id: string;
-  desc?: string;
-  onSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
-const CheckboxStyle: React.FC<CheckboxProps> = ({ text, id, desc, onSelect }) => {
+const CheckboxStyle: React.FC<CheckboxTypes> = ({ text, id, desc, onSelect }) => {
   return (
     <FormGroup>
     <FormControlLabel 

@@ -8,7 +8,7 @@ import { calculateTotal } from "@utils/dataUtils";
 import { validateForm } from "@utils/formUtils";
 import { formatSubmission } from "@utils/mapperUtils";
 import RegistrationForm from "./RegistrationForm";
-import { FormTypes, SelectionTypes } from "@interfaces/types";
+import { FormTypes, SelectionTypes } from "@app/interfaces/types";
 
 const FORM_DATA: FormTypes = {
   firstName: "",

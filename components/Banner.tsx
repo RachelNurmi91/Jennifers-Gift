@@ -1,10 +1,8 @@
 import React from 'react'
+import { BannerTypes } from './interfaces/types'
 
-interface BannerProps {
-  title: string,
-}
 
-const Banner: React.FC<BannerProps> = ({ title }) => {
+const Banner: React.FC<BannerTypes> = ({ title }) => {
   return (
 <div className='bg-gray-50' style={{ height: "200px" }}>
   <div className="mx-auto p-10" style={{ maxWidth: "900px", height: "100%" }}>

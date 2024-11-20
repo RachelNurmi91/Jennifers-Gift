@@ -5,9 +5,7 @@ import placeholderImg from "@public/images/recImg.png";
 
 export default function Charity() {
   return (
-    <section className="flex-center flex-col w-full">
-      <Banner title="Annual Charity Golf Tournament" />
-      <div className="mx-auto p-10" style={{ maxWidth: "900px" }}>
+    <div>
         <p>
           Our annual golf tournament at Lyman Orchards is a day dedicated to fun
           and raising awareness for metastatic breast cancer research. The event
@@ -98,6 +96,5 @@ export default function Charity() {
         </div>
         <RegisterButton />
       </div>
-    </section>
   );
 }

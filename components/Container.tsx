@@ -1,12 +1,8 @@
 import Banner from "@components/Banner";
-import { ReactNode } from "react";
+import { ContainerTypes } from "./interfaces/types";
 
-interface ContainerProps {
-  title: string,
-  component: ReactNode;
-}
 
-const Container: React.FC<ContainerProps> = ({ title, component }) => {
+const Container: React.FC<ContainerTypes> = ({ title, component }) => {
   return (
     <section className="flex-center flex-col w-full">
       <Banner title={title} />

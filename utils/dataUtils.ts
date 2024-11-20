@@ -1,4 +1,4 @@
-import { SelectionTypes } from "@interfaces/types";
+import { SelectionTypes } from "@app/interfaces/types";
 
 export function calculateTotal(selections:SelectionTypes, paymentType: string) {
 

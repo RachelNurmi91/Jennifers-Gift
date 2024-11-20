@@ -1,19 +1,10 @@
 import Image from "next/image";
 import venmoCode from "@public/images/qrCode.png";
-import { Alert } from "@mui/material";
+import { Alert } from "@mui/material"
+import { RegistrationTypes } from "@app/interfaces/types";
 
-interface RegistrationData {
-  registrationData: {
-    fullName: string,
-    email: string,
-    selection: string[],
-    paymentType: string, 
-    total: number,
-    _id: string,
-  }
-}
 
-function Confirmation({ registrationData } : RegistrationData) {
+function Confirmation({ registrationData } : RegistrationTypes) {
 
   const confirmationNumber = registrationData?._id.toString();
   const userFriendlyConfirmationNumber = confirmationNumber

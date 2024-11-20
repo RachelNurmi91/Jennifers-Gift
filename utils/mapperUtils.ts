@@ -1,4 +1,4 @@
-import { FormTypes, SelectionTypes } from "@interfaces/types";
+import { FormTypes, SelectionTypes } from "@app/interfaces/types";
 
 export function formatSubmission(formData: FormTypes, total: number) {
   // Use reduce to filter out non-true values

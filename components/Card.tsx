@@ -3,18 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { CardTypes } from './interfaces/types';
 
-interface Image {
-  src: string;
-}
 
-interface CardProps {
-  image: Image;
-  title: string;
-  desc?: React.ReactNode;
-}
-
-const CardStyle: React.FC<CardProps> = ({ image, title, desc}) => {
+const CardStyle: React.FC<CardTypes> = ({ image, title, desc}) => {
   return (
     <Card>
       <CardMedia
