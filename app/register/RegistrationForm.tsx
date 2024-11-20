@@ -7,26 +7,7 @@ import ButtonStyle from "@components/Button";
 import SelectStyle from "@components/Select";
 import { FormEvent, ChangeEvent } from 'react';
 import { SelectChangeEvent } from "@mui/material";
-
-interface SelectionTypes {
-  attendAsGolfer: boolean;
-  attendAsTeam: boolean;
-  attendDinner: boolean;
-  sponsorHole: boolean;
-  sponsorDoubleHole: boolean;
-  sponsorBeverage: boolean;
-  sponsorLunch: boolean;
-  sponsorDinner: boolean;
-}
-
-interface FormTypes {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  selection: SelectionTypes;
-  paymentType: string;
-}
+import { FormTypes } from "@interfaces/types";
 
 interface RegistrationFormProps {
   onRegister: (e: FormEvent) => void;

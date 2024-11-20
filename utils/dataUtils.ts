@@ -1,13 +1,4 @@
-interface SelectionTypes {
-  attendAsGolfer: boolean;
-  attendAsTeam: boolean;
-  attendDinner: boolean;
-  sponsorHole: boolean;
-  sponsorDoubleHole: boolean;
-  sponsorBeverage: boolean;
-  sponsorLunch: boolean;
-  sponsorDinner: boolean;
-}
+import { SelectionTypes } from "@interfaces/types";
 
 export function calculateTotal(selections:SelectionTypes, paymentType: string) {
 

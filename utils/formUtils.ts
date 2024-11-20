@@ -1,22 +1,4 @@
-interface SelectionTypes {
-  attendAsGolfer: boolean;
-  attendAsTeam: boolean;
-  attendDinner: boolean;
-  sponsorHole: boolean;
-  sponsorDoubleHole: boolean;
-  sponsorBeverage: boolean;
-  sponsorLunch: boolean;
-  sponsorDinner: boolean;
-}
-
-interface FormTypes {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  selection: SelectionTypes;
-  paymentType: string;
-}
+import { FormTypes } from "@interfaces/types";
 
 export function validateForm(formData: FormTypes) {
 
