@@ -1,4 +1,4 @@
-import { validateForm } from "./formUtils";
+import { validateForm } from "../formUtils";
 import { describe, expect, it } from "@jest/globals";
 
 describe('Validate form', () => {

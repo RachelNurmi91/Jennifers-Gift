@@ -1,4 +1,4 @@
-import { formatSubmission } from "./mapperUtils";
+import { formatSubmission } from "../mapperUtils"
 import { describe, expect, it } from "@jest/globals";
 
 describe('Format form submission', () => {

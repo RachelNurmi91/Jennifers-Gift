@@ -1,4 +1,4 @@
-import { calculateTotal } from "./dataUtils";
+import { calculateTotal } from "../dataUtils";
 import { describe, expect, it } from "@jest/globals";
 
 describe('Calculate total of users selections', () => {
