@@ -12,7 +12,7 @@ const CardStyle: React.FC<CardTypes> = ({ image, title, desc}) => {
       <CardMedia
         component="img"
         alt={title}
-        height="140"
+        height="140px"
         image={image.src}
       />
       <CardContent>

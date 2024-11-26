@@ -25,7 +25,7 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
           <InputStyle
             label="First Name"
             id="firstName"
-            placeholder="Jane"
+            placeholder=""
             action={handleInput}
           />
         </div>
@@ -34,7 +34,7 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
           <InputStyle
             label="Last Name"
             id="lastName"
-            placeholder="Smith"
+            placeholder=""
             action={handleInput}
           />
         </div>
@@ -42,7 +42,7 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
           <InputStyle
             label="Email Address"
             id="email"
-            placeholder="janesmith@email.com"
+            placeholder=""
             action={handleInput}
           />
         </div>
@@ -50,7 +50,7 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
           <InputStyle
             label="Mobile Number"
             id="phone"
-            placeholder="555-555-5555"
+            placeholder=""
             action={handleInput}
           />
         </div>
