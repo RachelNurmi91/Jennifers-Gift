@@ -1,47 +1,42 @@
-import { SelectionTypes } from "@app/interfaces/types";
+export function calculateTotal(selection:string, addOn:boolean, currentTotal: number) {
 
-export function calculateTotal(selections:SelectionTypes, paymentType: string) {
-
-  let total = 0;
+  let total = currentTotal;
 
   // Calculate total based on selections
-  Object.keys(selections).forEach((selection) => {
-    if (selections[selection as keyof SelectionTypes]) {
+    if (selection) {
       switch (selection) {
         case "attendAsGolfer":
-          total += 150;
+          total += addOn ? 150 : -150;
           break;
         case "attendAsTeam":
-          total += 600;
+          total += addOn ? 600 : -600;
           break;
         case "attendDinner":
-          total += 60;
+          total += addOn ? 60 : -60;
           break;
         case "sponsorHole":
-          total += 150;
+          total += addOn ? 150 : -150;
           break;
         case "sponsorDoubleHole":
-          total += 200;
+          total += addOn ? 200 : -200;
           break;
         case "sponsorBeverage":
-          total += 500;
+          total += addOn ? 500 : -500;
           break;
         case "sponsorLunch":
-          total += 750;
+          total += addOn ? 750 : -750;
           break;
         case "sponsorDinner":
-          total += 1000;
+          total += addOn ? 1000 : -1000;
           break;
         default:
           total += 0;
       }
     }
-  });
-
-  // Add payment type fee if payment type is "card"
-  if (paymentType === "card") {
-    total += total * 0.03;
-  }
-
+  
   return total
 };
+
+export function calculateProcessingFee(total: number) {
+  return total + (total * 0.03);
+}

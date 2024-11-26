@@ -20,6 +20,7 @@ export interface FormTypes {
   phone: string;
   selection: SelectionTypes;
   paymentType: string;
+  total: number;
 }
 
 export interface ChildrenTypes {
@@ -43,7 +44,6 @@ export interface RegistrationFormTypes {
   handleSelect: (e: ChangeEvent<HTMLInputElement>) => void;
   handleInput: (e: ChangeEvent<HTMLInputElement>) => void;
   formData: FormTypes;
-  total: number;
 }
 
 export interface RegistrationTypes {

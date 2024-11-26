@@ -1,30 +1,34 @@
-import { calculateTotal } from "../dataUtils";
+import { calculateTotal, calculateProcessingFee } from "../dataUtils";
 import { describe, expect, it } from "@jest/globals";
 
+describe('Calculate processing fee', () => {
+  it('Add processing fee', () => {
+    const result = calculateProcessingFee(1000)
+    const calculatedTotal = 1000 + (1000 * 0.03);
+    expect(result).toBe(calculatedTotal)
+  })
+})
+
 describe('Calculate total of users selections', () => {
-  it('Calculate total with a card payment', () => {
+  it('Calculate total', () => {
 
     const selections = {
       attendAsGolfer: false,
-      attendAsTeam: true,
+      attendAsTeam: false,
       attendDinner: false,
       sponsorHole: false,
       sponsorDoubleHole: false,
-      sponsorBeverage: true,
+      sponsorBeverage: false,
       sponsorLunch: false,
       sponsorDinner: false,
     }
-    
-    const paymentType = "card";
 
-    const result = calculateTotal(selections, paymentType);
-    const selectionTotal = 600 + 500;
-    const processingFee = selectionTotal * 0.03;
-    const total = selectionTotal + processingFee;
-    expect(result).toBe(total);
+    const result = calculateTotal('sponsorDinner', !selections.sponsorDinner, 0);
+    const selectionTotal = 1000;
+    expect(result).toBe(selectionTotal);
   })
 
-  it('Calculate total with a Venmo payment', () => {
+  it('Update total', () => {
 
     const selections = {
       attendAsGolfer: false,
@@ -36,11 +40,9 @@ describe('Calculate total of users selections', () => {
       sponsorLunch: false,
       sponsorDinner: false,
     }
-    
-    const paymentType = "venmo";
 
-    const result = calculateTotal(selections, paymentType);
-    const total = 600 + 500;
-    expect(result).toBe(total)
+    const result = calculateTotal('attendAsTeam', selections.attendAsTeam, 1000);
+    const selectionTotal = 1000 + 600;
+    expect(result).toBe(selectionTotal);
   })
 })

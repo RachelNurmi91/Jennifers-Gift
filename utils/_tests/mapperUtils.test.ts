@@ -20,9 +20,10 @@ describe('Format form submission', () => {
         sponsorDinner: false,
       },
       paymentType: 'venmo',
+      total: 1100,
     }
 
-    const result = formatSubmission(formData, 1100);
+    const result = formatSubmission(formData);
     const formattedSubmission = {
       fullName: `Andrew Jacobs`,
       email: 'jacobs@jacobstestfirm.com',

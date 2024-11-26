@@ -1,6 +1,6 @@
 import { FormTypes, SelectionTypes } from "@app/interfaces/types";
 
-export function formatSubmission(formData: FormTypes, total: number) {
+export function formatSubmission(formData: FormTypes) {
   // Use reduce to filter out non-true values
   const filteredSelections = Object.keys(formData.selection).filter((x) => formData.selection[x as keyof SelectionTypes]);
 
@@ -10,6 +10,6 @@ export function formatSubmission(formData: FormTypes, total: number) {
     phone: formData.phone,
     selection: filteredSelections, // Use the filtered object
     paymentType: formData.paymentType,
-    total: total,
+    total: formData.total,
   }
 }

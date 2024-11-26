@@ -26,4 +26,7 @@ export function validateForm(formData: FormTypes) {
   ) {
     return "Please chose at least one participation selection.";
   }
+  if (!!formData.total) {
+    return "Please chose at least one participation selection."
+  }
 };

@@ -19,7 +19,7 @@ describe('useRegistrationForm test', () => {
     expect(result.current.formData.selection.sponsorLunch).toBe(false);
     expect(result.current.formData.selection.sponsorDinner).toBe(false);
     expect(result.current.formData.paymentType).toBe("venmo");
-    expect(result.current.total).toBe(0);
+    expect(result.current.formData.total).toBe(0);
   });
 
   it('Update state when handleInput is called', () => {

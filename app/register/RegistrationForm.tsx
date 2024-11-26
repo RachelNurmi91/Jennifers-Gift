@@ -6,6 +6,7 @@ import Form from "next/form";
 import ButtonStyle from "@components/Button";
 import SelectStyle from "@components/Select";
 import { RegistrationFormTypes } from "@app/interfaces/types";
+import { calculateProcessingFee } from "@utils/dataUtils";
 
 const RegistrationForm: React.FC<RegistrationFormTypes> = ({
   onRegister,
@@ -13,7 +14,6 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
   handleSelect,
   handleInput,
   formData,
-  total
 }) => {
   return (
     <Form onSubmit={onRegister} action="#">
@@ -148,7 +148,7 @@ const RegistrationForm: React.FC<RegistrationFormTypes> = ({
         </div>
       </div>
       <div className="my-10 text-end">
-        <span className="font-bold">Your Total Cost:</span> ${total.toFixed(2)}
+        <span className="font-bold">Your Total Cost:</span> ${ formData.paymentType === 'card' ? calculateProcessingFee(formData.total).toFixed(2) : formData.total.toFixed(2)}
       </div>
       <div className="text-center">
         <ButtonStyle text="Register" />

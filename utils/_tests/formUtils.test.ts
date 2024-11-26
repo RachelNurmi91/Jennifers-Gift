@@ -20,6 +20,7 @@ describe('Validate form', () => {
         sponsorDinner: false,
       },
       paymentType: 'card',
+      total: 60,
     }
     const result = validateForm(formData)
     const error = 'Please enter your first name.'
@@ -44,6 +45,7 @@ describe('Validate form', () => {
         sponsorDinner: false,
       },
       paymentType: 'card',
+      total: 60,
     }
     const result = validateForm(formData)
     const error = 'Please enter your last name.'
@@ -68,6 +70,7 @@ describe('Validate form', () => {
         sponsorDinner: false,
       },
       paymentType: 'card',
+      total: 60,
     }
     const result = validateForm(formData)
     const error = 'Please enter your email address.'
@@ -92,6 +95,7 @@ describe('Validate form', () => {
         sponsorDinner: false,
       },
       paymentType: 'card',
+      total: 60,
     }
     const result = validateForm(formData)
     const error = 'Please enter your mobile number.'
@@ -116,6 +120,7 @@ describe('Validate form', () => {
         sponsorDinner: false,
       },
       paymentType: 'card',
+      total: 60,
     }
     const result = validateForm(formData)
     const error = 'Please chose at least one participation selection.'

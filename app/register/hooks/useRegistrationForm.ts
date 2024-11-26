@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { FormTypes, SelectionTypes } from "@app/interfaces/types";
 import { SelectChangeEvent } from "@mui/material";
+import { calculateTotal } from "../../../utils/dataUtils";
 
 const FORM_DATA: FormTypes = {
   firstName: "",
@@ -18,11 +19,11 @@ const FORM_DATA: FormTypes = {
     sponsorDinner: false,
   },
   paymentType: "venmo",
+  total: 0,
 };
 
 export function useRegistrationForm() {
   const [formData, setFormData] = useState<FormTypes>(FORM_DATA);
-  const [total, setTotal] = useState(0);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
@@ -33,15 +34,26 @@ export function useRegistrationForm() {
 
   const handleSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const { id } = e.target;
-    
-    setFormData((prevState) => ({
-      ...prevState,
-      selection: {
+  
+    // Update selection first
+    setFormData((prevState) => {
+      const newSelection = {
         ...prevState.selection,
-        [id as keyof Selection]: !prevState.selection[id as keyof SelectionTypes],
-      },
-    }));
+        [id as keyof SelectionTypes]: !prevState.selection[id as keyof SelectionTypes],
+      };
+  
+      // Calculate the new total based on the updated selection
+      const calculatedTotal = calculateTotal(id, !prevState.selection[id as keyof SelectionTypes], prevState.total);
+  
+      // Return the updated state
+      return {
+        ...prevState,
+        selection: newSelection,
+        total: calculatedTotal,
+      };
+    });
   };
+  
 
   const handlePaymentType = (e: SelectChangeEvent<string>) => {
     setFormData((prevState) => ({
@@ -52,8 +64,6 @@ export function useRegistrationForm() {
 
   return {
     formData,
-    total,
-    setTotal,
     handleInput,
     handleSelect,
     handlePaymentType
